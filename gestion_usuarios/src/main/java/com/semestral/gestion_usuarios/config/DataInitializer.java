@@ -27,12 +27,13 @@ public class DataInitializer implements CommandLineRunner {
 
         Rol admin = new Rol();
         admin.setNombreRol("ADMIN");
-        rolRep.save(admin);
-        Rol user= new Rol();
-        admin.setNombreRol("USER");
-        rolRep.save(admin);
+        admin = rolRep.save(admin); // Cambiado: Guardamos y reasignamos
 
-        Usuario usuarioAdmin =new Usuario();
+        Rol user = new Rol();
+        user.setNombreRol("USER"); // Corregido: Antes decía admin.setNombreRol
+        user = rolRep.save(user); // Cambiado: Guardamos y reasignamos
+
+        Usuario usuarioAdmin = new Usuario();
         usuarioAdmin.setNombreU("Administrador");
         usuarioAdmin.setRutU("11111111-1");
         usuarioAdmin.setCorreoU("admin@JoyeriaEter.com");
@@ -40,14 +41,12 @@ public class DataInitializer implements CommandLineRunner {
         usuarioAdmin.setRol(admin);
         usuarioRep.save(usuarioAdmin);
 
-        Usuario usuario1=new Usuario();
+        Usuario usuario1 = new Usuario();
         usuario1.setNombreU("Usuario ejemplo");
         usuario1.setRutU("22222222-2");
         usuario1.setCorreoU("user@example.com");
         usuario1.setClaveU("1");
         usuario1.setRol(user);
         usuarioRep.save(usuario1);
-
     }
-
 }
